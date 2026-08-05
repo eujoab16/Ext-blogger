@@ -1,1 +1,1 @@
-# Extens-o-para-blogger
+# Ext-blogger

@@ -4,197 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blogger Studio Pro</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
   <style>
-  :root {
-    --primary-color: #4f46e5;
-    --primary-hover: #4338ca;
-    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --text-color: #f8fafc;
-    --accent-color: #38bdf8;
-  }
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: system-ui, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
 
-  body {
-    background: var(--bg-gradient);
-    color: var(--text-color);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin: 0;
-  }
+    h1 { color: #38bdf8; text-align: center; }
+    h2 { color: #818cf8; font-size: 1.1rem; margin-top: 20px; }
 
-  .container {
-    width: 100%;
-    max-width: 750px;
-    background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-    margin-bottom: 40px;
-  }
+    /* Estilo dos itens de cópia (details) */
+    details {
+      background: #1e293b;
+      margin-bottom: 8px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+    }
 
-  h3 {
-    color: var(--accent-color);
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
+    summary { cursor: pointer; font-weight: 500; }
 
-  p.descricao-ajuda {
-    font-size: 0.9rem;
-    color: #94a3b8;
-    margin-bottom: 15px;
-    line-height: 1.5;
-    text-align: center;
-  }
+    textarea {
+      width: 100%;
+      height: 70px;
+      margin-top: 8px;
+      background: #0f172a;
+      color: #38bdf8;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 8px;
+      box-sizing: border-box;
+      font-family: monospace;
+      resize: vertical;
+    }
 
-  .category-title {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #38bdf8;
-    margin-top: 16px;
-    margin-bottom: 6px;
-    font-weight: 700;
-  }
+    /* Estilo dos links para as ferramentas */
+    .link-ferramenta {
+      display: block;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      padding: 12px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      transition: background 0.2s;
+    }
 
-  .lista-itens {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-height: 480px;
-    overflow-y: auto;
-    padding-right: 4px;
-  }
-
-  .item-acordeao {
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.03);
-    padding: 10px 14px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-
-  .item-acordeao:hover {
-    border-color: var(--primary-color);
-    background-color: rgba(255, 255, 255, 0.06);
-  }
-
-  .item-acordeao summary {
-    font-size: 13px;
-    font-weight: 500;
-    color: #cbd5e1;
-    cursor: pointer;
-  }
-
-  .code-drawer {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--card-border);
-  }
-
-  .code-drawer textarea {
-    width: 100%;
-    height: 95px;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    color: #f8fafc;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 12px;
-    outline: none;
-    resize: vertical;
-    box-sizing: border-box;
-  }
-
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
-  ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
+    .link-ferramenta:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h3>Blogger Studio Pro</h3>
-  <p class="descricao-ajuda">Clique nos itens para copiar códigos ou acesse as ferramentas nos links correspondentes.</p>
+  <h1>Blogger Studio Pro</h1>
 
-  <div class="lista-itens">
-    <div class="category-title">- Templates Prontos -</div>
-    <details class="item-acordeao">
-      <summary>Template Zerado sem Post</summary>
-      <div class="code-drawer">
-        <textarea readonly onclick="this.select()">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
-&lt;head&gt;&lt;title&gt;&lt;data:blog.pageTitle/&gt;&lt;/title&gt;&lt;/head&gt;
-&lt;body&gt;&lt;/body&gt;
-&lt;/html&gt;</textarea>
-      </div>
-    </details>
+  <!-- SEÇÃO 1: CÓDIGOS PARA COPIAR -->
+  <h2>Códigos Rápidos</h2>
 
-    <details class="item-acordeao">
-      <summary>Template Zerado com Post</summary>
-      <div class="code-drawer">
-        <textarea readonly onclick="this.select()">&lt;b:section id="Posts"&gt;&lt;b:widget id="Blog1" type="Blog"/&gt;&lt;/b:section&gt;</textarea>
-      </div>
-    </details>
+  <details>
+    <summary>Template Zerado sem Post</summary>
+    <textarea readonly onclick="this.select()"><?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title><data:blog.pageTitle/></title></head>
+<body></body>
+</html></textarea>
+  </details>
 
-    <details class="item-acordeao">
-      <summary>Template SKIN</summary>
-      <div class="code-drawer">
-        <textarea readonly onclick="this.select()">&lt;b:if cond="data:view.isLayoutMode"&gt;&lt;b:template-skin&gt;&lt;![CDATA[body#layout{}]]&gt;&lt;/b:template-skin&gt;&lt;/b:if&gt;</textarea>
-      </div>
-    </details>
+  <details>
+    <summary>Template Zerado com Post</summary>
+    <textarea readonly onclick="this.select()"><b:section id="Posts"><b:widget id="Blog1" type="Blog"/></b:section></textarea>
+  </details>
 
-    <div class="category-title">- Gadgets Blogger -</div>
-    <details class="item-acordeao">
-      <summary>Seção de Gadgets</summary>
-      <div class="code-drawer">
-        <textarea readonly onclick="this.select()">&lt;b:section id='Secao'&gt;&lt;/b:section&gt;</textarea>
-      </div>
-    </details>
+  <details>
+    <summary>Link CDN Font Awesome (Head)</summary>
+    <textarea readonly onclick="this.select()"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/></textarea>
+  </details>
 
-    <details class="item-acordeao">
-      <summary>Gadget de Postagens</summary>
-      <div class="code-drawer">
-        <textarea readonly onclick="this.select()">&lt;b:widget id='Blog1' type='Blog'/&gt;</textarea>
-      </div>
-    </details>
+  <!-- SEÇÃO 2: LINKS PARA AS FERRAMENTAS INDIVIDUAIS -->
+  <h2>Ferramentas</h2>
 
-    <details class="item-acordeao">
-      <summary>HTML / JavaScript</summary>
-      <div class="code-drawer">
-        <textarea readonly onclick="this.select()">&lt;b:widget id='HTML1' type='HTML'/&gt;</textarea>
-      </div>
-    </details>
-
-    <details class="item-acordeao">
-      <summary>Link CDN Font Awesome (Head)</summary>
-      <div class="code-drawer">
-        <textarea readonly onclick="this.select()">&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/&gt;</textarea>
-      </div>
-    </details>
-
-    <div class="category-title">- Links para Ferramentas Interativas -</div>
-    <a href="ferramentas/gerador-pessoa.html" class="item-acordeao">📇 Gerador de Pessoa (Dados Fictícios)</a>
-    <a href="ferramentas/gerador-senha.html" class="item-acordeao">🔑 Gerador de Senhas Seguras</a>
-    <a href="ferramentas/organizador-codigo.html" class="item-acordeao">🧹 Organizador e Formatador de Código</a>
-    <a href="ferramentas/seletor-cores.html" class="item-acordeao">🎨 Seletor de Cores (Color Picker)</a>
-    <a href="ferramentas/gerador-sombra.html" class="item-acordeao">🌓 Gerador de Sombras CSS (Box-Shadow)</a>
-    <a href="ferramentas/gerador-whatsapp.html" class="item-acordeao">💬 Gerador de Link WhatsApp</a>
-  </div>
-</div>
+  <a href="ferramentas/gerador-pessoa.html" class="link-ferramenta">Gerador de Pessoa</a>
+  <a href="ferramentas/gerador-senha.html" class="link-ferramenta">Gerador de Senhas</a>
+  <a href="ferramentas/organizador-codigo.html" class="link-ferramenta">Formatador de Código</a>
+  <a href="ferramentas/seletor-cores.html" class="link-ferramenta">Seletor de Cores</a>
+  <a href="ferramentas/gerador-sombra.html" class="link-ferramenta">Gerador de Sombras CSS</a>
+  <a href="ferramentas/gerador-whatsapp.html" class="link-ferramenta">Gerador de Link WhatsApp</a>
 
 </body>
 </html>

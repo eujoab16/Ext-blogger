@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blogger Studio Pro</title>
-  <!-- Link CDN Oficial Completo do Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
   <style>
   :root {
@@ -15,9 +14,9 @@
     --card-border: rgba(255, 255, 255, 0.1);
     --text-color: #f8fafc;
     --accent-color: #38bdf8;
-}
+  }
 
-body {
+  body {
     background: var(--bg-gradient);
     color: var(--text-color);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -27,9 +26,9 @@ body {
     align-items: center;
     padding: 20px;
     margin: 0;
-}
+  }
 
-.container {
+  .container {
     width: 100%;
     max-width: 750px;
     background: var(--card-bg);
@@ -39,29 +38,25 @@ body {
     padding: 24px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
     margin-bottom: 40px;
-}
+  }
 
-.painel-secao { display: none; }
-.painel-secao.ativo { display: block; }
-
-h3 {
+  h3 {
     color: var(--accent-color);
     text-align: center;
     font-size: 1.5rem;
     margin-bottom: 20px;
     font-weight: 700;
-    letter-spacing: -0.5px;
-}
+  }
 
-p.descricao-ajuda {
+  p.descricao-ajuda {
     font-size: 0.9rem;
     color: #94a3b8;
     margin-bottom: 15px;
     line-height: 1.5;
     text-align: center;
-}
+  }
 
-.category-title {
+  .category-title {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -69,51 +64,49 @@ p.descricao-ajuda {
     margin-top: 16px;
     margin-bottom: 6px;
     font-weight: 700;
-}
+  }
 
-.lista-itens {
+  .lista-itens {
     display: flex;
     flex-direction: column;
     gap: 8px;
     max-height: 480px;
     overflow-y: auto;
     padding-right: 4px;
-}
+  }
 
-.item-acordeao {
+  .item-acordeao {
     border: 1px solid var(--card-border);
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.03);
-    transition: all 0.2s ease;
     padding: 10px 14px;
     cursor: pointer;
-}
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
 
-.item-acordeao:hover {
+  .item-acordeao:hover {
     border-color: var(--primary-color);
     background-color: rgba(255, 255, 255, 0.06);
-}
+  }
 
-.item-acordeao summary {
+  .item-acordeao summary {
     font-size: 13px;
     font-weight: 500;
     color: #cbd5e1;
     cursor: pointer;
-}
+  }
 
-.item-acordeao[open] {
-    background-color: rgba(15, 23, 42, 0.7);
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
-}
-
-.code-drawer {
+  .code-drawer {
     margin-top: 10px;
     padding-top: 10px;
     border-top: 1px solid var(--card-border);
-}
+  }
 
-.code-drawer textarea, .interactive-tool textarea, .interactive-tool input, .interactive-tool select {
+  .code-drawer textarea {
     width: 100%;
+    height: 95px;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--card-border);
     border-radius: 6px;
@@ -124,485 +117,84 @@ p.descricao-ajuda {
     outline: none;
     resize: vertical;
     box-sizing: border-box;
-}
+  }
 
-.code-drawer textarea { height: 95px; }
-
-.footer-links {
-    margin-top: 20px;
-    text-align: center;
-}
-
-button.btn-tools {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    background: var(--primary-color);
-    border: none;
-    padding: 10px 24px;
-    display: inline-block;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    font-size: 14px;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
-}
-
-button.btn-tools:hover {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-}
-
-.interactive-tool {
-    display: none;
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 16px;
-    margin-top: 15px;
-}
-
-.interactive-tool.ativo { display: block; }
-.interactive-tool label { display: block; font-size: 12px; color: var(--accent-color); margin-bottom: 4px; margin-top: 10px; font-weight: 600; }
-
-.row-group { display: flex; gap: 12px; }
-.row-group > div { flex: 1; }
-
-.grid-icons {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 10px;
-    max-height: 420px;
-    overflow-y: auto;
-    padding: 6px;
-}
-
-.grid-icons .item-acordeao {
-    text-align: center;
-    padding: 10px 6px;
-}
-
-.grid-icons .item-acordeao summary {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-}
-
-.grid-icons .item-acordeao summary i {
-    font-size: 28px;
-    color: var(--accent-color);
-    margin-bottom: 2px;
-}
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
-
-.floating-nav {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 999;
-}
-
-.floating-btn {
-    background: rgba(30, 41, 59, 0.8);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--card-border);
-    color: #fff;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.floating-btn:hover { background: var(--primary-color); transform: scale(1.1); }
-
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
   </style>
 </head>
 <body>
 
 <div class="container">
+  <h3>Blogger Studio Pro</h3>
+  <p class="descricao-ajuda">Clique nos itens para copiar códigos ou acesse as ferramentas nos links correspondentes.</p>
 
-  <!-- PAINEL 1: FERRAMENTAS PRINCIPAIS -->
-  <div class="painel-secao ativo" id="painel-1">
-    <h3>Blogger Studio Pro</h3>
-    <p class="descricao-ajuda">Clique em qualquer item para abrir a aba com o código pronto para selecionar e copiar.</p>
-
-    <div class="lista-itens">
-      <div class="category-title">- Escolha um Template -</div>
-      <details class="item-acordeao">
-        <summary>Template Zerado sem Post</summary>
-        <div class="code-drawer">
-          <textarea readonly onclick="this.select()">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+  <div class="lista-itens">
+    <div class="category-title">- Templates Prontos -</div>
+    <details class="item-acordeao">
+      <summary>Template Zerado sem Post</summary>
+      <div class="code-drawer">
+        <textarea readonly onclick="this.select()">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
 &lt;head&gt;&lt;title&gt;&lt;data:blog.pageTitle/&gt;&lt;/title&gt;&lt;/head&gt;
 &lt;body&gt;&lt;/body&gt;
 &lt;/html&gt;</textarea>
-        </div>
-      </details>
-      <details class="item-acordeao">
-        <summary>Template Zerado com Post</summary>
-        <div class="code-drawer">
-          <textarea readonly onclick="this.select()">&lt;b:section id="Posts"&gt;&lt;b:widget id="Blog1" type="Blog"/&gt;&lt;/b:section&gt;</textarea>
-        </div>
-      </details>
-      <details class="item-acordeao">
-        <summary>Template SKIN</summary>
-        <div class="code-drawer">
-          <textarea readonly onclick="this.select()">&lt;b:if cond="data:view.isLayoutMode"&gt;&lt;b:template-skin&gt;&lt;![CDATA[body#layout{}]]&gt;&lt;/b:template-skin&gt;&lt;/b:if&gt;</textarea>
-        </div>
-      </details>
+      </div>
+    </details>
 
-      <div class="category-title">- Escolha um Gadget -</div>
-      <details class="item-acordeao">
-        <summary>Seção de Gadgets</summary>
-        <div class="code-drawer">
-          <textarea readonly onclick="this.select()">&lt;b:section id='Secao'&gt;&lt;/b:section&gt;</textarea>
-        </div>
-      </details>
-      <details class="item-acordeao">
-        <summary>Gadget de Postagens</summary>
-        <div class="code-drawer">
-          <textarea readonly onclick="this.select()">&lt;b:widget id='Blog1' type='Blog'/&gt;</textarea>
-        </div>
-      </details>
-      <details class="item-acordeao">
-        <summary>HTML / JavaScript</summary>
-        <div class="code-drawer">
-          <textarea readonly onclick="this.select()">&lt;b:widget id='HTML1' type='HTML'/&gt;</textarea>
-        </div>
-      </details>
-    </div>
+    <details class="item-acordeao">
+      <summary>Template Zerado com Post</summary>
+      <div class="code-drawer">
+        <textarea readonly onclick="this.select()">&lt;b:section id="Posts"&gt;&lt;b:widget id="Blog1" type="Blog"/&gt;&lt;/b:section&gt;</textarea>
+      </div>
+    </details>
 
-    <div class="footer-links">
-      <button class="btn-tools" onclick="mudarPainel(2)">Outras Ferramentas e Ícones</button>
-    </div>
+    <details class="item-acordeao">
+      <summary>Template SKIN</summary>
+      <div class="code-drawer">
+        <textarea readonly onclick="this.select()">&lt;b:if cond="data:view.isLayoutMode"&gt;&lt;b:template-skin&gt;&lt;![CDATA[body#layout{}]]&gt;&lt;/b:template-skin&gt;&lt;/b:if&gt;</textarea>
+      </div>
+    </details>
+
+    <div class="category-title">- Gadgets Blogger -</div>
+    <details class="item-acordeao">
+      <summary>Seção de Gadgets</summary>
+      <div class="code-drawer">
+        <textarea readonly onclick="this.select()">&lt;b:section id='Secao'&gt;&lt;/b:section&gt;</textarea>
+      </div>
+    </details>
+
+    <details class="item-acordeao">
+      <summary>Gadget de Postagens</summary>
+      <div class="code-drawer">
+        <textarea readonly onclick="this.select()">&lt;b:widget id='Blog1' type='Blog'/&gt;</textarea>
+      </div>
+    </details>
+
+    <details class="item-acordeao">
+      <summary>HTML / JavaScript</summary>
+      <div class="code-drawer">
+        <textarea readonly onclick="this.select()">&lt;b:widget id='HTML1' type='HTML'/&gt;</textarea>
+      </div>
+    </details>
+
+    <details class="item-acordeao">
+      <summary>Link CDN Font Awesome (Head)</summary>
+      <div class="code-drawer">
+        <textarea readonly onclick="this.select()">&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/&gt;</textarea>
+      </div>
+    </details>
+
+    <div class="category-title">- Links para Ferramentas Interativas -</div>
+    <a href="ferramentas/gerador-pessoa.html" class="item-acordeao">📇 Gerador de Pessoa (Dados Fictícios)</a>
+    <a href="ferramentas/gerador-senha.html" class="item-acordeao">🔑 Gerador de Senhas Seguras</a>
+    <a href="ferramentas/organizador-codigo.html" class="item-acordeao">🧹 Organizador e Formatador de Código</a>
+    <a href="ferramentas/seletor-cores.html" class="item-acordeao">🎨 Seletor de Cores (Color Picker)</a>
+    <a href="ferramentas/gerador-sombra.html" class="item-acordeao">🌓 Gerador de Sombras CSS (Box-Shadow)</a>
+    <a href="ferramentas/gerador-whatsapp.html" class="item-acordeao">💬 Gerador de Link WhatsApp</a>
   </div>
-
-  <!-- PAINEL 2: OUTRAS FERRAMENTAS E BIBLIOTECA DE ÍCONES COMPLETA -->
-  <div class="painel-secao" id="painel-2">
-    <h3>Extensão Blogger Profissional</h3>
-    <p class="descricao-ajuda">Ferramentas completas e biblioteca completa com milhares de ícones do Font Awesome organizados por categorias.</p>
-
-    <div id="menu-p2">
-      <div class="lista-itens">
-        <div class="category-title">- Instalação Obrigatória -</div>
-        <details class="item-acordeao">
-          <summary>Copiar Link CDN do Font Awesome para o Head</summary>
-          <div class="code-drawer">
-            <textarea readonly onclick="this.select()">&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/&gt;</textarea>
-          </div>
-        </details>
-
-        <div class="category-title">- Biblioteca de Ícones Completa (Font Awesome) -</div>
-        <div class="item-acordeao" onclick="abrirSubTela('sub-icons-geral')"><summary>Ícones Gerais &amp; Utilitários (Solid)</summary></div>
-        <div class="item-acordeao" onclick="abrirSubTela('sub-icons-marcas')"><summary>Ícones de Redes Sociais &amp; Marcas (Brands)</summary></div>
-        <div class="item-acordeao" onclick="abrirSubTela('sub-icons-comercio')"><summary>Ícones de Comércio, Lojas e Pagamentos</summary></div>
-        <div class="item-acordeao" onclick="abrirSubTela('sub-icons-setas')"><summary>Ícones de Setas, Direções e Navegação</summary></div>
-
-        <div class="category-title">- Geradores e Utilitários -</div>
-        <div class="item-acordeao" onclick="abrirSubTela('tool-pessoa')"><summary>Gerador de Pessoa (Dados Fictícios)</summary></div>
-        <div class="item-acordeao" onclick="abrirSubTela('tool-senha')"><summary>Gerador de Senhas Seguras</summary></div>
-        <div class="item-acordeao" onclick="abrirSubTela('tool-organizador')"><summary>Organizador e Formatador de Código</summary></div>
-        <div class="item-acordeao" onclick="abrirSubTela('tool-cores')"><summary>Seletor de Cores (Color Picker)</summary></div>
-        <div class="item-acordeao" onclick="abrirSubTela('tool-sombra')"><summary>Gerador de Sombras CSS (Box-Shadow)</summary></div>
-        <div class="item-acordeao" onclick="abrirSubTela('tool-wpp')"><summary>Gerador de Link Whatsapp</summary></div>
-      </div>
-
-      <div class="footer-links">
-        <button class="btn-tools" onclick="mudarPainel(1)">Voltar</button>
-      </div>
-    </div>
-
-    <!-- SUB-TELA 1: ÍCONES GERAIS (SOLID) -->
-    <div class="interactive-tool" id="sub-icons-geral">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Font Awesome - Ícones Gerais &amp; Utilitários</div>
-      <p class="descricao-ajuda">Todos os principais ícones de interface do Font Awesome Solid.</p>
-      <div class="grid-icons">
-        <details class="item-acordeao"><summary><i class="fa-solid fa-house"></i><br>house</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-house"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-user"></i><br>user</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-user"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-envelope"></i><br>envelope</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-envelope"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-magnifying-glass"></i><br>search</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-magnifying-glass"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-gear"></i><br>gear</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-gear"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-bars"></i><br>bars</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-bars"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-heart"></i><br>heart</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-heart"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-star"></i><br>star</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-star"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-check"></i><br>check</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-xmark"></i><br>xmark</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-xmark"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-plus"></i><br>plus</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-plus"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-minus"></i><br>minus</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-minus"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-trash"></i><br>trash</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-trash"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-pen"></i><br>pen</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-pen"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-download"></i><br>download</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-download"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-upload"></i><br>upload</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-upload"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-share-nodes"></i><br>share</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-share-nodes"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-phone"></i><br>phone</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-phone"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-location-dot"></i><br>location</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-location-dot"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-lock"></i><br>lock</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-lock"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-unlock"></i><br>unlock</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-unlock"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-bell"></i><br>bell</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-bell"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-calendar"></i><br>calendar</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-calendar"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-clock"></i><br>clock</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-clock"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-camera"></i><br>camera</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-camera"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-image"></i><br>image</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-image"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-video"></i><br>video</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-video"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-music"></i><br>music</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-music"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-folder"></i><br>folder</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-folder"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-file"></i><br>file</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-file"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-print"></i><br>print</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-print"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-cloud"></i><br>cloud</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-cloud"&gt;&lt;/i&gt;</textarea></div></details>
-      </div>
-    </div>
-
-    <!-- SUB-TELA 2: MARCAS E REDES SOCIAIS -->
-    <div class="interactive-tool" id="sub-icons-marcas">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Font Awesome - Marcas &amp; Redes Sociais</div>
-      <p class="descricao-ajuda">Ícones de marcas e redes sociais usando a classe "fa-brands".</p>
-      <div class="grid-icons">
-        <details class="item-acordeao"><summary><i class="fa-brands fa-whatsapp"></i><br>whatsapp</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-whatsapp"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-instagram"></i><br>instagram</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-instagram"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-facebook"></i><br>facebook</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-facebook"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-youtube"></i><br>youtube</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-youtube"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-twitter"></i><br>twitter</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-twitter"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-x-twitter"></i><br>x-twitter</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-x-twitter"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-tiktok"></i><br>tiktok</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-tiktok"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-linkedin"></i><br>linkedin</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-linkedin"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-github"></i><br>github</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-github"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-telegram"></i><br>telegram</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-telegram"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-discord"></i><br>discord</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-discord"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-twitch"></i><br>twitch</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-twitch"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-pinterest"></i><br>pinterest</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-pinterest"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-spotify"></i><br>spotify</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-spotify"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-google"></i><br>google</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-google"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-apple"></i><br>apple</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-apple"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-windows"></i><br>windows</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-windows"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-android"></i><br>android</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-android"&gt;&lt;/i&gt;</textarea></div></details>
-      </div>
-    </div>
-
-    <!-- SUB-TELA 3: COMÉRCIO E LOJAS -->
-    <div class="interactive-tool" id="sub-icons-comercio">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Font Awesome - Comércio &amp; Lojas</div>
-      <p class="descricao-ajuda">Ícones voltados para e-commerce, carrinhos e pagamentos.</p>
-      <div class="grid-icons">
-        <details class="item-acordeao"><summary><i class="fa-solid fa-cart-shopping"></i><br>cart-shopping</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-cart-shopping"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-bag-shopping"></i><br>bag-shopping</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-bag-shopping"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-basket-shopping"></i><br>basket-shopping</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-basket-shopping"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-credit-card"></i><br>credit-card</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-credit-card"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-wallet"></i><br>wallet</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-wallet"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-money-bill"></i><br>money-bill</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-money-bill"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-tag"></i><br>tag</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-tag"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-tags"></i><br>tags</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-tags"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-store"></i><br>store</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-store"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-shop"></i><br>shop</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-shop"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-cc-visa"></i><br>visa</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-cc-visa"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-cc-mastercard"></i><br>mastercard</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-cc-mastercard"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-cc-paypal"></i><br>paypal</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-cc-paypal"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-brands fa-pix"></i><br>pix</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-brands fa-pix"&gt;&lt;/i&gt;</textarea></div></details>
-      </div>
-    </div>
-
-    <!-- SUB-TELA 4: SETAS E NAVEGAÇÃO -->
-    <div class="interactive-tool" id="sub-icons-setas">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Font Awesome - Setas &amp; Navegação</div>
-      <p class="descricao-ajuda">Setas direcionais e ícones de navegação rápida.</p>
-      <div class="grid-icons">
-        <details class="item-acordeao"><summary><i class="fa-solid fa-arrow-right"></i><br>arrow-right</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-arrow-right"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-arrow-left"></i><br>arrow-left</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-arrow-left"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-arrow-up"></i><br>arrow-up</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-arrow-up"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-arrow-down"></i><br>arrow-down</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-arrow-down"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-chevron-right"></i><br>chevron-right</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-chevron-right"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-chevron-left"></i><br>chevron-left</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-chevron-left"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-chevron-up"></i><br>chevron-up</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-chevron-up"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-chevron-down"></i><br>chevron-down</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-chevron-down"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-angles-right"></i><br>angles-right</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-angles-right"&gt;&lt;/i&gt;</textarea></div></details>
-        <details class="item-acordeao"><summary><i class="fa-solid fa-angles-left"></i><br>angles-left</summary><div class="code-drawer"><textarea readonly onclick="this.select()">&lt;i class="fa-solid fa-angles-left"&gt;&lt;/i&gt;</textarea></div></details>
-      </div>
-    </div>
-
-    <!-- SUB-TELA: GERADOR DE PESSOA -->
-    <div class="interactive-tool" id="tool-pessoa">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Gerador de Pessoa (Dados Fictícios)</div>
-      <button class="btn-tools" onclick="gerarPessoa()" style="width:100%; margin-bottom:12px;">Gerar Nova Pessoa</button>
-      <label>Dados Gerados:</label>
-      <textarea id="res-pessoa" onclick="this.select()" readonly style="height: 120px;"></textarea>
-    </div>
-
-    <!-- SUB-TELA: GERADOR DE SENHAS -->
-    <div class="interactive-tool" id="tool-senha">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Gerador de Senhas Seguras</div>
-      <label>Tamanho da Senha: <span id="val-tam">16</span></label>
-      <input id="senha-tam" max="32" min="6" oninput="document.getElementById('val-tam').innerText = this.value; gerarSenha()" type="range" value="16">
-      <button class="btn-tools" onclick="gerarSenha()" style="width:100%; margin:12px 0;">Gerar Senha</button>
-      <label>Senha Gerada:</label>
-      <textarea id="res-senha" onclick="this.select()" readonly style="height: 60px;"></textarea>
-    </div>
-
-    <!-- SUB-TELA: ORGANIZADOR DE CÓDIGO -->
-    <div class="interactive-tool" id="tool-organizador">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Organizador e Formatador de Código</div>
-      <label>Cole seu Código:</label>
-      <textarea id="input-codigo" placeholder="Cole seu código aqui..." style="height: 90px;"></textarea>
-      <button class="btn-tools" onclick="formatarCodigo()" style="width:100%; margin:12px 0;">Formatar / Organizar</button>
-      <label>Código Formatado:</label>
-      <textarea id="res-codigo" onclick="this.select()" readonly style="height: 90px;"></textarea>
-    </div>
-
-    <!-- SUB-TELA: SELETOR DE CORES -->
-    <div class="interactive-tool" id="tool-cores">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Seletor de Cores (Color Picker)</div>
-      <label>Escolha a Cor:</label>
-      <input id="input-cor" oninput="atualizarCores(this.value)" style="height: 45px; padding: 2px; cursor: pointer;" type="color" value="#4f46e5">
-      <div class="row-group" style="margin-top:10px;">
-        <div><label>HEX:</label><input id="cor-hex" onclick="this.select()" readonly type="text"></div>
-        <div><label>RGB:</label><input id="cor-rgb" onclick="this.select()" readonly type="text"></div>
-      </div>
-    </div>
-
-    <!-- SUB-TELA: GERADOR DE SOMBRAS -->
-    <div class="interactive-tool" id="tool-sombra">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Gerador de Sombras CSS (Box-Shadow)</div>
-      <div id="box-sombra-preview" style="width:100%; height:80px; background:#4f46e5; border-radius:8px; margin-bottom:15px;"></div>
-      <label>Deslocamento X (<span id="lbl-x">10</span>px):</label>
-      <input id="sombra-x" max="50" min="-50" oninput="gerarSombra()" type="range" value="10">
-      <label>Deslocamento Y (<span id="lbl-y">10</span>px):</label>
-      <input id="sombra-y" max="50" min="-50" oninput="gerarSombra()" type="range" value="10">
-      <label>Desfoque (<span id="lbl-blur">20</span>px):</label>
-      <input id="sombra-blur" max="100" min="0" oninput="gerarSombra()" type="range" value="20">
-      <label>Propriedade CSS:</label>
-      <textarea id="res-sombra" onclick="this.select()" readonly style="height: 60px;"></textarea>
-    </div>
-
-    <!-- SUB-TELA: WHATSAPP -->
-    <div class="interactive-tool" id="tool-wpp">
-      <button class="btn-tools" onclick="voltarMenuP2()" style="margin-bottom:12px;">&lt; Voltar</button>
-      <div class="category-title" style="margin-top:0;">Gerador de Link Whatsapp</div>
-      <label>Número (com DDD):</label>
-      <input id="wpp-num" oninput="gerarWpp()" placeholder="5511999999999" type="text">
-      <label>Mensagem padrão:</label>
-      <input id="wpp-msg" oninput="gerarWpp()" placeholder="Olá!" type="text">
-      <label>Resultado:</label>
-      <textarea id="res-wpp" onclick="this.select()" readonly>https://api.whatsapp.com/send?phone=...</textarea>
-    </div>
-
-  </div>
-
 </div>
 
-<div class="floating-nav">
-  <div class="floating-btn" onclick="scrollTopAnimated2()" title="Topo">&#9650;</div>
-  <div class="floating-btn" onclick="scrollTopAnimated()" title="Fim">&#9660;</div>
-</div>
-
-<script type="text/javascript">
-// JS Vanilla sem dependência do jQuery
-
-function mudarPainel(num) {
-    voltarMenuP2();
-    if(num === 2) {
-        document.getElementById('painel-1').classList.remove('ativo');
-        document.getElementById('painel-2').classList.add('ativo');
-    } else {
-        document.getElementById('painel-2').classList.remove('ativo');
-        document.getElementById('painel-1').classList.add('ativo');
-    }
-    window.scrollTo({top: 0, behavior: 'smooth'});
-}
-
-function abrirSubTela(idSub) {
-    document.getElementById('menu-p2').style.display = 'none';
-    const subTelas = document.querySelectorAll('.interactive-tool');
-    subTelas.forEach(t => t.classList.remove('ativo'));
-    document.getElementById(idSub).classList.add('ativo');
-    if (idSub === 'tool-pessoa') gerarPessoa();
-    if (idSub === 'tool-senha') gerarSenha();
-    if (idSub === 'tool-sombra') gerarSombra();
-    if (idSub === 'tool-cores') atualizarCores(document.getElementById('input-cor').value);
-}
-
-function voltarMenuP2() {
-    const subTelas = document.querySelectorAll('.interactive-tool');
-    subTelas.forEach(t => t.classList.remove('ativo'));
-    document.getElementById('menu-p2').style.display = 'block';
-}
-
-function gerarPessoa() {
-    const nomes = ["Carlos Silva", "Ana Souza", "Bruno Oliveira", "Mariana Santos"];
-    const CPFs = ["123.456.789-09", "987.654.321-12", "456.123.789-45", "789.456.123-88"];
-    const idx = Math.floor(Math.random() * nomes.length);
-    document.getElementById('res-pessoa').value = "Nome: " + nomes[idx] + "\nCPF: " + CPFs[idx] + "\nIdade: " + (22 + Math.floor(Math.random() * 25)) + " anos";
-}
-
-function gerarSenha() {
-    const tam = document.getElementById('senha-tam').value;
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$";
-    let senha = "";
-    for (let i = 0; i < tam; i++) senha += chars.charAt(Math.floor(Math.random() * chars.length));
-    document.getElementById('res-senha').value = senha;
-}
-
-function formatarCodigo() {
-    let codigo = document.getElementById('input-codigo').value;
-    codigo = codigo.replace(/></g, ">\n<");
-    document.getElementById('res-codigo').value = codigo;
-}
-
-function atualizarCores(val) {
-    document.getElementById('cor-hex').value = val;
-    let r = parseInt(val.substring(1,3), 16);
-    let g = parseInt(val.substring(3,5), 16);
-    let b = parseInt(val.substring(5,7), 16);
-    document.getElementById('cor-rgb').value = "rgb(" + r + ", " + g + ", " + b + ")";
-}
-
-function gerarSombra() {
-    const x = document.getElementById('sombra-x').value;
-    const y = document.getElementById('sombra-y').value;
-    const blur = document.getElementById('sombra-blur').value;
-    document.getElementById('lbl-x').innerText = x;
-    document.getElementById('lbl-y').innerText = y;
-    document.getElementById('lbl-blur').innerText = blur;
-    const cssVal = "box-shadow: " + x + "px " + y + "px " + blur + "px rgba(0,0,0,0.4);";
-    document.getElementById('res-sombra').value = cssVal;
-    document.getElementById('box-sombra-preview').style.boxShadow = x + "px " + y + "px " + blur + "px rgba(0,0,0,0.4)";
-}
-
-function gerarWpp() {
-    const num = document.getElementById('wpp-num').value || '5511999999999';
-    const msg = encodeURIComponent(document.getElementById('wpp-msg').value || 'Olá!');
-    document.getElementById('res-wpp').value = 'https://api.whatsapp.com/send?phone=' + num + '&text=' + msg;
-}
-
-function scrollTopAnimated() {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-
-function scrollTopAnimated2() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-</script>
 </body>
 </html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Link WhatsApp</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: system-ui, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 { color: #38bdf8; text-align: center; margin-bottom: 24px; }
+    
+    .link-voltar {
+      display: inline-block;
+      color: #818cf8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .link-voltar:hover { text-decoration: underline; }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    .campo {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    input, textarea {
+      width: 100%;
+      background: #0f172a;
+      color: #38bdf8;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 10px;
+      box-sizing: border-box;
+      font-family: monospace;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    textarea {
+      height: 80px;
+      resize: vertical;
+    }
+
+    .botoes-acao {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button, a.btn-testar {
+      flex: 1;
+      text-align: center;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      box-sizing: border-box;
+    }
+
+    button:hover, a.btn-testar:hover {
+      background: #4338ca;
+    }
+
+    a.btn-testar {
+      background: #10b981;
+    }
+
+    a.btn-testar:hover {
+      background: #059669;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../index.html" class="link-voltar">&larr; Voltar ao Painel</a>
+
+  <h1>Gerador de Link WhatsApp</h1>
+
+  <div class="card">
+    <div class="campo">
+      <label>Número com DDD (Apenas números):</label>
+      <input type="text" id="numero" placeholder="Ex: 5511999999999" oninput="gerarLink()">
+    </div>
+
+    <div class="campo">
+      <label>Mensagem Padrão (Opcional):</label>
+      <input type="text" id="mensagem" placeholder="Ex: Olá, gostaria de mais informações!" oninput="gerarLink()">
+    </div>
+
+    <div class="campo">
+      <label>Link Gerado (Clique para selecionar):</label>
+      <textarea id="resultado" readonly onclick="this.select()"></textarea>
+    </div>
+
+    <div class="botoes-acao">
+      <button onclick="copiarLink()">Copiar Link</button>
+      <a id="btn-testar" href="#" target="_blank" class="btn-testar">Testar Link</a>
+    </div>
+  </div>
+
+  <script>
+    function gerarLink() {
+      let num = document.getElementById('numero').value.replace(/\D/g, '');
+      const msg = encodeURIComponent(document.getElementById('mensagem').value);
+      
+      // Se não digitar o código do país (55), adiciona automaticamente se tiver tamanho padrão de DDD + número BR (10 ou 11 dígitos)
+      if (num.length === 10 || num.length === 11) {
+        num = '55' + num;
+      }
+
+      const link = num ? `https://api.whatsapp.com/send?phone=${num}${msg ? '&text=' + msg : ''}` : 'Digite o número acima...';
+
+      document.getElementById('resultado').value = link;
+      document.getElementById('btn-testar').href = num ? link : '#';
+    }
+
+    function copiarLink() {
+      const campo = document.getElementById('resultado');
+      if (campo.value && campo.value.startsWith('http')) {
+        campo.select();
+        navigator.clipboard.writeText(campo.value);
+        alert('Link copiado para a área de transferência!');
+      }
+    }
+
+    // Inicializar na abertura
+    gerarLink();
+  </script>
+
+</body>
+</html>

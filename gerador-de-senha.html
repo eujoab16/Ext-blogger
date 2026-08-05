@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Senhas Seguras</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: system-ui, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 { color: #38bdf8; text-align: center; margin-bottom: 24px; }
+    
+    .link-voltar {
+      display: inline-block;
+      color: #818cf8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .link-voltar:hover { text-decoration: underline; }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    .campo {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      background: #0f172a;
+      color: #38bdf8;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 10px;
+      box-sizing: border-box;
+      font-family: monospace;
+      font-size: 1.1rem;
+      outline: none;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: #4f46e5;
+      cursor: pointer;
+    }
+
+    .opcoes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .opcao-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+
+    .opcao-item input {
+      accent-color: #4f46e5;
+      cursor: pointer;
+    }
+
+    .botoes-acao {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      flex: 1;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #4338ca;
+    }
+
+    button.btn-copiar {
+      background: #10b981;
+    }
+
+    button.btn-copiar:hover {
+      background: #059669;
+    }
+
+    .forca-bar {
+      height: 4px;
+      background: #334155;
+      border-radius: 2px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .forca-progresso {
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s, background-color 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../index.html" class="link-voltar">&larr; Voltar ao Painel</a>
+
+  <h1>Gerador de Senhas Seguras</h1>
+
+  <div class="card">
+    <div class="campo">
+      <label>Senha Gerada:</label>
+      <input type="text" id="resultado" readonly onclick="this.select()">
+      <div class="forca-bar">
+        <div id="forca" class="forca-progresso"></div>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label>Tamanho da Senha: <strong id="val-tamanho" style="color: #38bdf8;">16</strong> caracteres</label>
+      <input type="range" id="tamanho" min="6" max="32" value="16" oninput="atualizarTamanho()">
+    </div>
+
+    <div class="opcoes">
+      <label class="opcao-item">
+        <input type="checkbox" id="chk-maiusculas" checked onchange="gerarSenha()">
+        Maiúsculas (A-Z)
+      </label>
+      <label class="opcao-item">
+        <input type="checkbox" id="chk-minusculas" checked onchange="gerarSenha()">
+        Minúsculas (a-z)
+      </label>
+      <label class="opcao-item">
+        <input type="checkbox" id="chk-numeros" checked onchange="gerarSenha()">
+        Números (0-9)
+      </label>
+      <label class="opcao-item">
+        <input type="checkbox" id="chk-simbolos" checked onchange="gerarSenha()">
+        Símbolos (@#$%)
+      </label>
+    </div>
+
+    <div class="botoes-acao">
+      <button onclick="gerarSenha()">Gerar Nova</button>
+      <button class="btn-copiar" onclick="copiarSenha()">Copiar Senha</button>
+    </div>
+  </div>
+
+  <script>
+    const charSets = {
+      maiusculas: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      minusculas: "abcdefghijklmnopqrstuvwxyz",
+      numeros: "0123456789",
+      simbolos: "!@#$%^&*()_+-=[]{}|;:,.<>?"
+    };
+
+    function atualizarTamanho() {
+      document.getElementById('val-tamanho').innerText = document.getElementById('tamanho').value;
+      gerarSenha();
+    }
+
+    function gerarSenha() {
+      const tamanho = parseInt(document.getElementById('tamanho').value);
+      const incMaiusculas = document.getElementById('chk-maiusculas').checked;
+      const incMinusculas = document.getElementById('chk-minusculas').checked;
+      const incNumeros = document.getElementById('chk-numeros').checked;
+      const incSimbolos = document.getElementById('chk-simbolos').checked;
+
+      let caracteres = "";
+      if (incMaiusculas) caracteres += charSets.maiusculas;
+      if (incMinusculas) caracteres += charSets.minusculas;
+      if (incNumeros) caracteres += charSets.numeros;
+      if (incSimbolos) caracteres += charSets.simbolos;
+
+      if (!caracteres) {
+        document.getElementById('resultado').value = "Selecione ao menos 1 opção";
+        atualizarIndicadorForca(0);
+        return;
+      }
+
+      let senha = "";
+      for (let i = 0; i < tamanho; i++) {
+        const index = Math.floor(Math.random() * caracteres.length);
+        senha += caracteres.charAt(index);
+      }
+
+      document.getElementById('resultado').value = senha;
+      avaliarForca(senha, tamanho);
+    }
+
+    function avaliarForca(senha, tamanho) {
+      let pontos = 0;
+      if (tamanho >= 12) pontos += 2;
+      else if (tamanho >= 8) pontos += 1;
+
+      if (/[A-Z]/.test(senha)) pontos++;
+      if (/[a-z]/.test(senha)) pontos++;
+      if (/[0-9]/.test(senha)) pontos++;
+      if (/[^A-Za-z0-9]/.test(senha)) pontos++;
+
+      atualizarIndicadorForca(pontos);
+    }
+
+    function atualizarIndicadorForca(pontos) {
+      const barra = document.getElementById('forca');
+      if (pontos <= 2) {
+        barra.style.width = '33%';
+        barra.style.backgroundColor = '#ef4444'; // Vermelho
+      } else if (pontos <= 4) {
+        barra.style.width = '66%';
+        barra.style.backgroundColor = '#f59e0b'; // Amarelo
+      } else {
+        barra.style.width = '100%';
+        barra.style.backgroundColor = '#10b981'; // Verde
+      }
+    }
+
+    function copiarSenha() {
+      const campo = document.getElementById('resultado');
+      if (campo.value && !campo.value.startsWith('Selecione')) {
+        campo.select();
+        navigator.clipboard.writeText(campo.value);
+        alert('Senha copiada para a área de transferência!');
+      }
+    }
+
+    // Inicializar ao carregar
+    gerarSenha();
+  </script>
+
+</body>
+</html>

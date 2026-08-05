@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seletor de Cores (RGB & HEX)</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: system-ui, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 { color: #38bdf8; text-align: center; margin-bottom: 24px; }
+    
+    .link-voltar {
+      display: inline-block;
+      color: #818cf8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .link-voltar:hover { text-decoration: underline; }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    /* Caixa de pré-visualização da cor */
+    .preview-cor {
+      width: 100%;
+      height: 100px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      margin-bottom: 20px;
+      transition: background-color 0.1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-cor input[type="color"] {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .campo {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      cursor: pointer;
+    }
+
+    input[type="range"].r { accent-color: #ef4444; }
+    input[type="range"].g { accent-color: #22c55e; }
+    input[type="range"].b { accent-color: #3b82f6; }
+
+    .resultado-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .input-copia {
+      display: flex;
+      gap: 6px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      background: #0f172a;
+      color: #38bdf8;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 8px;
+      box-sizing: border-box;
+      font-family: monospace;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    button.btn-copiar {
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    button.btn-copiar:hover {
+      background: #4338ca;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../index.html" class="link-voltar">&larr; Voltar ao Painel</a>
+
+  <h1>Seletor de Cores</h1>
+
+  <div class="card">
+    <!-- Visualização + Color Picker invisível por cima -->
+    <div id="box-preview" class="preview-cor" title="Clique para abrir o seletor visual">
+      <input type="color" id="picker" value="#4f46e5" oninput="atualizarPeloPicker(this.value)">
+    </div>
+
+    <!-- Sliders RGB -->
+    <div class="campo">
+      <label>Vermelho (R): <strong id="val-r" style="color: #ef4444;">79</strong></label>
+      <input type="range" id="range-r" class="r" min="0" max="255" value="79" oninput="atualizarPelosSliders()">
+    </div>
+
+    <div class="campo">
+      <label>Verde (G): <strong id="val-g" style="color: #22c55e;">70</strong></label>
+      <input type="range" id="range-g" class="g" min="0" max="255" value="70" oninput="atualizarPelosSliders()">
+    </div>
+
+    <div class="campo">
+      <label>Azul (B): <strong id="val-b" style="color: #3b82f6;">229</strong></label>
+      <input type="range" id="range-b" class="b" min="0" max="255" value="229" oninput="atualizarPelosSliders()">
+    </div>
+
+    <!-- Resultados para cópia -->
+    <div class="resultado-group">
+      <div class="campo">
+        <label>Hexadecimal (HEX):</label>
+        <div class="input-copia">
+          <input type="text" id="res-hex" readonly onclick="this.select()">
+          <button class="btn-copiar" onclick="copiar('res-hex')">Copiar</button>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>RGB:</label>
+        <div class="input-copia">
+          <input type="text" id="res-rgb" readonly onclick="this.select()">
+          <button class="btn-copiar" onclick="copiar('res-rgb')">Copiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function componentToHex(c) {
+      const hex = parseInt(c).toString(16);
+      return hex.length == 1 ? "0" + hex : hex;
+    }
+
+    function rgbToHex(r, g, b) {
+      return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+    }
+
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
+    }
+
+    function renderizar(r, g, b) {
+      const hex = rgbToHex(r, g, b);
+      const rgbStr = `rgb(${r}, ${g}, ${b})`;
+
+      document.getElementById('val-r').innerText = r;
+      document.getElementById('val-g').innerText = g;
+      document.getElementById('val-b').innerText = b;
+
+      document.getElementById('range-r').value = r;
+      document.getElementById('range-g').value = g;
+      document.getElementById('range-b').value = b;
+
+      document.getElementById('box-preview').style.backgroundColor = hex;
+      document.getElementById('picker').value = hex;
+
+      document.getElementById('res-hex').value = hex.toUpperCase();
+      document.getElementById('res-rgb').value = rgbStr;
+    }
+
+    function atualizarPelosSliders() {
+      const r = document.getElementById('range-r').value;
+      const g = document.getElementById('range-g').value;
+      const b = document.getElementById('range-b').value;
+      renderizar(r, g, b);
+    }
+
+    function atualizarPeloPicker(hexVal) {
+      const rgb = hexToRgb(hexVal);
+      if (rgb) renderizar(rgb.r, rgb.g, rgb.b);
+    }
+
+    function copiar(idElemento) {
+      const campo = document.getElementById(idElemento);
+      campo.select();
+      navigator.clipboard.writeText(campo.value);
+      alert('Copiado: ' + campo.value);
+    }
+
+    // Inicializar com a cor padrão
+    atualizarPelosSliders();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Layout Grid/Flex Responsivo</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: system-ui, sans-serif;
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 { color: #38bdf8; text-align: center; margin-bottom: 24px; }
+    
+    .link-voltar {
+      display: inline-block;
+      color: #818cf8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .link-voltar:hover { text-decoration: underline; }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    /* Container Dinâmico do Preview */
+    .preview-container {
+      width: 100%;
+      min-height: 140px;
+      background: #0f172a;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      padding: 12px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    .preview-item {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 10px;
+      font-size: 0.9rem;
+    }
+
+    .campo {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: #4f46e5;
+      cursor: pointer;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      background: #0f172a;
+      color: #38bdf8;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 10px;
+      box-sizing: border-box;
+      font-family: monospace;
+      font-size: 0.85rem;
+      outline: none;
+      resize: vertical;
+    }
+
+    .botoes-acao {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      flex: 1;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover { background: #4338ca; }
+    button.btn-copiar { background: #10b981; }
+    button.btn-copiar:hover { background: #059669; }
+  </style>
+</head>
+<body>
+
+  <a href="../index.html" class="link-voltar">&larr; Voltar ao Painel</a>
+
+  <h1>Gerador de Layout Responsivo</h1>
+
+  <div class="card">
+    <!-- Preview em Tempo Real -->
+    <div id="grid-preview" class="preview-container"></div>
+
+    <div class="campo">
+      <label>Quantidade de Itens: <strong id="val-qtd" style="color: #38bdf8;">4</strong></label>
+      <input type="range" id="qtd" min="1" max="12" value="4" oninput="atualizarLayout()">
+    </div>
+
+    <div class="campo">
+      <label>Largura Mínima dos Cards: <strong id="val-min" style="color: #38bdf8;">150px</strong></label>
+      <input type="range" id="min-width" min="80" max="300" step="10" value="150" oninput="atualizarLayout()">
+    </div>
+
+    <div class="campo">
+      <label>Espaçamento (Gap): <strong id="val-gap" style="color: #38bdf8;">16px</strong></label>
+      <input type="range" id="gap" min="0" max="40" step="4" value="16" oninput="atualizarLayout()">
+    </div>
+
+    <div class="campo">
+      <label>Código CSS:</label>
+      <textarea id="res-css" readonly onclick="this.select()"></textarea>
+    </div>
+
+    <div class="campo">
+      <label>Código HTML:</label>
+      <textarea id="res-html" readonly onclick="this.select()"></textarea>
+    </div>
+
+    <div class="botoes-acao">
+      <button class="btn-copiar" onclick="copiar('res-css')">Copiar CSS</button>
+      <button class="btn-copiar" onclick="copiar('res-html')">Copiar HTML</button>
+    </div>
+  </div>
+
+  <script>
+    function atualizarLayout() {
+      const qtd = document.getElementById('qtd').value;
+      const minWidth = document.getElementById('min-width').value;
+      const gap = document.getElementById('gap').value;
+
+      document.getElementById('val-qtd').innerText = qtd;
+      document.getElementById('val-min').innerText = `${minWidth}px`;
+      document.getElementById('val-gap').innerText = `${gap}px`;
+
+      const preview = document.getElementById('grid-preview');
+      preview.style.display = 'grid';
+      preview.style.gridTemplateColumns = `repeat(auto-fit, minmax(${minWidth}px, 1fr))`;
+      preview.style.gap = `${gap}px`;
+
+      // Renderiza os cards de preview
+      preview.innerHTML = '';
+      let htmlItems = '';
+      for (let i = 1; i <= qtd; i++) {
+        const item = document.createElement('div');
+        item.className = 'preview-item';
+        item.innerText = `Card ${i}`;
+        preview.appendChild(item);
+
+        htmlItems += `  <div class="card">Card ${i}</div>\n`;
+      }
+
+      // Gera os códigos para cópia
+      const cssCodigo = `.container-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(${minWidth}px, 1fr));\n  gap: ${gap}px;\n}`;
+      const htmlCodigo = `<div class="container-grid">\n${htmlItems}</div>`;
+
+      document.getElementById('res-css').value = cssCodigo;
+      document.getElementById('res-html').value = htmlCodigo;
+    }
+
+    function copiar(idElemento) {
+      const campo = document.getElementById(idElemento);
+      campo.select();
+      navigator.clipboard.writeText(campo.value);
+      alert('Código copiado!');
+    }
+
+    // Inicializar
+    atualizarLayout();
+  </script>
+
+</body>
+</html>

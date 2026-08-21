@@ -70,14 +70,23 @@
 
     <div class='lista-itens'>
       <br/><div class='category-title'>- Escolha um Template -</div><br/>
-      <details class='item-acordeao'><summary>Template Zerado sem Post</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-&lt;head&gt;&lt;title&gt;&lt;data:blog.pageTitle/&gt;&lt;/title&gt;&lt;/head&gt;
-&lt;body&gt;&lt;/body&gt;
+      <details class='item-acordeao'><summary>Template Zerado</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;html xmlns=&apos;http://www.w3.org/1999/xhtml&apos; xmlns:b=&apos;http://www.google.com/2005/gml/b&apos; xmlns:data=&apos;http://www.google.com/2005/gml/data&apos; xmlns:expr=&apos;http://www.google.com/2005/gml/expr&apos;&gt;
+&lt;head&gt;&lt;title&gt;&lt;data:blog.pageTitle/&gt;&lt;/title&gt;
+&lt;b:skin&gt;&lt;![CDATA[
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+]]&gt;&lt;/b:skin&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;b:section id=&apos;Secao&apos;&gt;&lt;/b:section&gt;
+&lt;/body&gt;
 &lt;/html&gt;</textarea></div></details>
-      <details class='item-acordeao'><summary>Template Zerado com Post</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:section id=&quot;Posts&quot;&gt;&lt;b:widget id=&quot;Blog1&quot; type=&quot;Blog&quot;/&gt;&lt;/b:section&gt;</textarea></div></details>
       <details class='item-acordeao'><summary>Template SKIN</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:if cond=&quot;data:view.isLayoutMode&quot;&gt;&lt;b:template-skin&gt;&lt;![CDATA[body#layout{}]]&gt;&lt;/b:template-skin&gt;&lt;/b:if&gt;</textarea></div></details>
-      <details class='item-acordeao'><summary>Cor variável (SKIN) PERSONALIZAR</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:variable name=&quot;main.color&quot; description=&quot;Main Color&quot; type=&quot;color&quot; default=&quot;#4f46e5&quot;/&gt;</textarea></div></details>
       
       <br/><div class='category-title'>- Escolha um Gadget -</div><br/>
       <details class='item-acordeao'><summary>Seção de Gadgets</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:section id=&#39;Secao&#39;&gt;&lt;/b:section&gt;</textarea></div></details>

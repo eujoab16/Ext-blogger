@@ -12,7 +12,7 @@
 
 ✨ **Acelere a criação dos seus temas, gadgets e otimizações em uma interface moderna, rápida e intuitiva.**
 
-[🌐 **Acessar a Aplicação Web (index.html)**](https://eujoab16.github.io/Ext-blogger/index.html) • [📖 Documentação](#-como-usar) • [⭐ Reportar Bug](https://github.com/eujoab16/Ext-blogger/issues)
+[🌐 **Acessar a Aplicação Web (index.html)**](https://eujoab16.github.io/Ext-blogger/index.html) • [🌐 **Baixe a extensão web (para o chrome e derivados chromium)**](https://www.mediafire.com/file/djwntdpq5vm68yd/Estens%C3%A3o+blogger.zip/file) • [📖 Documentação](#-como-usar) • [⭐ Reportar Bug](https://github.com/eujoab16/Ext-blogger/issues)
 
 ---
 

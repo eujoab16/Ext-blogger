@@ -68,24 +68,66 @@
   <!-- SEÇÃO 1: CÓDIGOS PARA COPIAR -->
   <h2>Códigos Rápidos</h2>
 
-  <details>
-    <summary>Template Zerado sem Post</summary>
-    <textarea readonly onclick="this.select()"><?xml version="1.0" encoding="UTF-8" ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head><title><data:blog.pageTitle/></title></head>
-<body></body>
-</html></textarea>
-  </details>
+    <div class='lista-itens'>
+      <div class='category-title'>- Escolha um Template -</div>
+      <details class='item-acordeao'><summary>Template Zerado sem Post</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;&lt;title&gt;&lt;data:blog.pageTitle/&gt;&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Template Zerado com Post</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:section id=&quot;Posts&quot;&gt;&lt;b:widget id=&quot;Blog1&quot; type=&quot;Blog&quot;/&gt;&lt;/b:section&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Template SKIN</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:if cond=&quot;data:view.isLayoutMode&quot;&gt;&lt;b:template-skin&gt;&lt;![CDATA[body#layout{}]]&gt;&lt;/b:template-skin&gt;&lt;/b:if&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Cor variável (SKIN) PERSONALIZAR</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:variable name=&quot;main.color&quot; description=&quot;Main Color&quot; type=&quot;color&quot; default=&quot;#4f46e5&quot;/&gt;</textarea></div></details>
+      
+      <div class='category-title'>- Escolha um Gadget -</div>
+      <details class='item-acordeao'><summary>Seção de Gadgets</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:section id=&#39;Secao&#39;&gt;&lt;/b:section&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Gadget de Postagens</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;Blog1&#39; type=&#39;Blog&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>HTML / JavaScript</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;HTML1&#39; type=&#39;HTML&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Lista de Links</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;LinkList1&#39; type=&#39;LinkList&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Lista Simples</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;TextList1&#39; type=&#39;TextList&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Pesquisa</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;Search1&#39; type=&#39;Search&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Imagem</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;Image1&#39; type=&#39;Image&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Formulário de Contato</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;ContactForm1&#39; type=&#39;ContactForm&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Marcadores</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;Label1&#39; type=&#39;Label&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Cabeçalho da Página</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;Header1&#39; type=&#39;Header&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Postagem em Destaque</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;FeaturedPost1&#39; type=&#39;FeaturedPost&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Postagens Mais Visitadas</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;PopularPosts1&#39; type=&#39;PopularPosts&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Texto</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;Text1&#39; type=&#39;Text&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Seguir por e-mail</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;FollowByEmail1&#39; type=&#39;FollowByEmail&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Estatísticas de Visitas</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;Stats1&#39; type=&#39;Stats&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Perfil / Autor</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;UserProfile1&#39; type=&#39;UserProfile&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Arquivos do Blog</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;BlogArchive1&#39; type=&#39;BlogArchive&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Páginas do Blog</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;PageList1&#39; type=&#39;PageList&#39;/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Tradutor</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:widget id=&#39;Translate1&#39; type=&#39;Translate&#39;/&gt;</textarea></div></details>
 
-  <details>
-    <summary>Template Zerado com Post</summary>
-    <textarea readonly onclick="this.select()"><b:section id="Posts"><b:widget id="Blog1" type="Blog"/></b:section></textarea>
-  </details>
+      <div class='category-title'>- Tags Nativas Condicionais -</div>
+      <details class='item-acordeao'><summary>Página inicial</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:if cond=&#39;data:view.isHomepage&#39;&gt;Conteúdo&lt;/b:if&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Página de posts</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:if cond=&#39;data:view.isPost&#39;&gt;Conteúdo&lt;/b:if&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Página Estática</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:if cond=&#39;data:view.isPage&#39;&gt;Conteúdo&lt;/b:if&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Página de pesquisa</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:if cond=&#39;data:view.isSearch&#39;&gt;Conteúdo&lt;/b:if&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Página de Marcador</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:if cond=&#39;data:view.isTagSearch&#39;&gt;Conteúdo&lt;/b:if&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Dispositivo Mobile</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:if cond=&#39;data:blog.isMobile&#39;&gt;Conteúdo&lt;/b:if&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>URL específico</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:if cond=&#39;data:view.url == &quot;URL_AQUI&quot;&#39;&gt;Conteúdo&lt;/b:if&gt;</textarea></div></details>
 
-  <details>
-    <summary>Link CDN Font Awesome (Head)</summary>
-    <textarea readonly onclick="this.select()"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/></textarea>
-  </details>
+      <div class='category-title'>- Tags Nativas Globais -</div>
+      <details class='item-acordeao'><summary>Título do blog</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:blog.title/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Url da Página Inicial</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:blog.homepageUrl/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Título da Página atual</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:blog.pageName/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Url da página atual</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:blog.url/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Tipo da Página</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:view.search.resultsMessage/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Página Mobile</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:blog.mobileCssUrl/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Título do Gadget</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:title/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>CDATA (Código com Erro)</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;![CDATA[ Código com caracteres especiais aqui ]]&gt;</textarea></div></details>
+
+      <div class='category-title'>- DENTRO DAS POSTAGENS: -</div>
+      <details class='item-acordeao'><summary>Loop de Postagens</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:loop values=&#39;data:posts&#39; var=&#39;post&#39;&gt;...&lt;/b:loop&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Título do Post</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:post.title/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Foto Principal do Post</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:post.featuredImage/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Conteúdo do Post</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:post.body/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Marcadores do Post</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;b:loop values=&#39;data:post.labels&#39; var=&#39;label&#39;&gt;&lt;data:label.name/&gt;&lt;/b:loop&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Resumo do Post</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:post.snippet/&gt;</textarea></div></details>
+      <details class='item-acordeao'><summary>Comentários</summary><div class='code-drawer'><textarea onclick='this.select()'>&lt;data:post.numComments/&gt;</textarea></div></details>
+    </div>
 
   <!-- SEÇÃO 2: LINKS PARA AS FERRAMENTAS INDIVIDUAIS -->
   <h2>Ferramentas</h2>
